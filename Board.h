@@ -29,6 +29,7 @@ public:
     ~Board();
     
     void makeX(RGB[],uint ,uint ,uint );
+    void makeO(RGB[],uint ,uint ,uint);
     string draw(unsigned int);
 };
 /*
@@ -76,5 +77,3 @@ inline istream&  operator>> (istream& in,Board &other){
     return in;
 
 }
-
-
