@@ -87,15 +87,13 @@ bool existFile (const string& nameFile) {
 string  Board:: draw(unsigned int pixels){
 
     int i = 0;
-    string nameFile="1";
-    nameFile+=to_string(i);
+    string nameFile=to_string(i);
     nameFile+=".ppm";
 
     while(existFile(nameFile)){
         i++;
         nameFile.clear();
-        nameFile="1";
-        nameFile+=to_string(i);
+        nameFile=to_string(i);
         nameFile+=".ppm";
     }
   ofstream imageFile(nameFile, ios::out | ios::binary);
