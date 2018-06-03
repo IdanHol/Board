@@ -111,14 +111,18 @@ string  Board:: draw(unsigned int pixels){
 //for over the board
 for(uint i=0;i<this->len;++i){
     for(uint j=0;j<this->len;++j){
-        switch (brd[i][j]){
-            case 'X':
+        if(brd[i][j]=='X')
             makeX(image,i,j,pixels);
-            break;
-            case 'O':
+        else if(brd[i][j]=='O')
             makeO(image,i,j,pixels);
-            break;
-        }
+        // switch (brd[i][j]){
+        //     case 'X':
+        //     makeX(image,i,j,pixels);
+        //     break;
+        //     case 'O':
+        //     makeO(image,i,j,pixels);
+        //     break;
+        // }
     }
 }
   ///
