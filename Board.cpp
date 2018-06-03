@@ -86,7 +86,7 @@ bool existFile (const string& nameFile) {
 }
 string  Board:: draw(unsigned int pixels){
 
-    int i = 0;
+    int i = 1;
     string nameFile=to_string(i);
     nameFile+=".ppm";
 
