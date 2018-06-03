@@ -126,7 +126,7 @@ for(uint i=0;i<this->len;++i){
   ///
   imageFile.write(reinterpret_cast<char*>(&image), 3*pixels*pixels);
   imageFile.close();
-      return (std::string) nameFile;
+      return nameFile;
 }
 void Board:: makeX(RGB image[],uint Row,uint Col,uint pixels){
     int brdsize=pixels/this->len;
