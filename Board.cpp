@@ -80,57 +80,107 @@ Board::~Board(){
     }
     delete[] brd;
 }
+bool existFile (const string& nameFile) {
+    ifstream f(nameFile.c_str());
+    return f.good();
+}
 string  Board:: draw(unsigned int pixels){
-    const int dimx = pixels, dimy = pixels;
-    string nameFile="cpp.ppm";
+
+    int i = 0;
+    string nameFile="cpp";
+    nameFile+=to_string(i);
+    nameFile+=".ppm";
+
+    while(existFile(nameFile)){
+        i++;
+        nameFile.clear();
+        nameFile="cpp";
+        nameFile+=to_string(i);
+        nameFile+=".ppm";
+    }
   ofstream imageFile(nameFile, ios::out | ios::binary);
-  imageFile << "P6" << endl << dimx <<" " << dimy << endl << 255 << endl;
-  RGB image[dimx*dimy];
-  for (int j = 0; j < dimy; ++j)  {  // row
-    for (int i = 0; i < dimx; ++i) { // column
+  imageFile << "P6" << endl << pixels <<" " << pixels << endl << 255 << endl;
+  RGB image[pixels*pixels];
+  for (int j = 0; j < pixels; ++j)  {  // row
+    for (int i = 0; i < pixels; ++i) { // column
     
-     image[dimx*j+i].red = 255;
-     image[dimx*j+i].green = 255;
-     image[dimx*j+i].blue = ( (i*i+j*j) % 256);
+     image[pixels*j+i].red = 255;
+     image[pixels*j+i].green = 255;
+     image[pixels*j+i].blue = ( (i*i+j*j) % 256);
     }
   }
- 
 
-  makeX(image,0,0,pixels);
- 
+//for over the board
+for(uint i=0;i<this->len;++i){
+    for(uint j=0;j<this->len;++j){
+        switch (brd[i][j]){
+            case 'X':
+            makeX(image,i,j,pixels);
+            break;
+            case 'O':
+            makeO(image,i,j,pixels);
+            break;
+        }
+    }
+}
   ///
   ///image processing
   ///
-  imageFile.write(reinterpret_cast<char*>(&image), 3*dimx*dimy);
+  imageFile.write(reinterpret_cast<char*>(&image), 3*pixels*pixels);
   imageFile.close();
       return (std::string) nameFile;
 }
-void Board:: makeX(RGB rgb[],uint Row,uint Col,uint numPixel){
-    int brdsize=numPixel/this->len;
+void Board:: makeX(RGB image[],uint Row,uint Col,uint pixels){
+    int brdsize=pixels/this->len;
 int RowStart=(Row+0.25)*brdsize, Colstart=(Col+0.25)*brdsize;
 	int Colend=(Col+0.75)*brdsize;   
 	for(int i=0; i<0.5*brdsize; i++)
 	{   	
-        rgb[(i+RowStart)*numPixel+Colstart+i-1].red=127;
-		rgb[(i+RowStart)*numPixel+Colstart+i].red=127;
-		rgb[(i+RowStart)*numPixel+Colstart+i+1].red=127;
-		rgb[(i+RowStart)*numPixel+Colstart+i-1].green=136;
-		rgb[(i+RowStart)*numPixel+Colstart+i].green=136;
-		rgb[(i+RowStart)*numPixel+Colstart+i+1].green=136;
-    	rgb[(i+RowStart)*numPixel+Colstart+i-1].blue=229;
-		rgb[(i+RowStart)*numPixel+Colstart+i].blue=229;
-		rgb[(i+RowStart)*numPixel+Colstart+i+1].blue=229;
+        image[(i+RowStart)*pixels+Colstart+i-1].red=127;
+		image[(i+RowStart)*pixels+Colstart+i].red=127;
+		image[(i+RowStart)*pixels+Colstart+i+1].red=127;
+		image[(i+RowStart)*pixels+Colstart+i-1].green=136;
+		image[(i+RowStart)*pixels+Colstart+i].green=136;
+		image[(i+RowStart)*pixels+Colstart+i+1].green=136;
+    	image[(i+RowStart)*pixels+Colstart+i-1].blue=229;
+		image[(i+RowStart)*pixels+Colstart+i].blue=229;
+		image[(i+RowStart)*pixels+Colstart+i+1].blue=229;
 	}
 	for(int i=0; i<0.5*brdsize; i++)
 	{
-        rgb[(i+RowStart)*numPixel+Colend-i-1].red=248;
-		rgb[(i+RowStart)*numPixel+Colend-i].red=248;
-		rgb[(i+RowStart)*numPixel+Colend-i+1].red=248;
-		rgb[(i+RowStart)*numPixel+Colend-i-1].green=11;
-		rgb[(i+RowStart)*numPixel+Colend-i].green=11;
-		rgb[(i+RowStart)*numPixel+Colend-i+1].green=11;
-        rgb[(i+RowStart)*numPixel+Colend-i-1].blue=11;
-		rgb[(i+RowStart)*numPixel+Colend-i].blue=11;
-		rgb[(i+RowStart)*numPixel+Colend-i+1].blue=11;
+        image[(i+RowStart)*pixels+Colend-i-1].red=248;
+		image[(i+RowStart)*pixels+Colend-i].red=248;
+		image[(i+RowStart)*pixels+Colend-i+1].red=248;
+		image[(i+RowStart)*pixels+Colend-i-1].green=11;
+		image[(i+RowStart)*pixels+Colend-i].green=11;
+		image[(i+RowStart)*pixels+Colend-i+1].green=11;
+        image[(i+RowStart)*pixels+Colend-i-1].blue=11;
+		image[(i+RowStart)*pixels+Colend-i].blue=11;
+		image[(i+RowStart)*pixels+Colend-i+1].blue=11;
+	}
+}
+void Board:: makeO(RGB image[],uint indrow,uint indcol,uint pixels){
+    int brdsize=pixels/this->len;
+    int rad=brdsize/3;
+    int rowCenter= (indrow+0.5)*brdsize, colCenter=(indcol+0.5)*brdsize;
+	int rowStart=indrow*brdsize, colStart=indcol*brdsize;
+	int rowEnd=(indrow+1)*brdsize, colEnd=(indcol+1)*brdsize;
+	for(int i=rowStart; i<rowEnd; i++)
+	{
+		for(int j=colStart; j<colEnd; j++)
+		{
+			int dist=sqrt((i-rowCenter)*(i-rowCenter)+(j-colCenter)*(j-colCenter));//
+			if(dist==rad){
+                image[i*pixels+j-1].red=27;
+		        image[i*pixels+j].red=27;
+		        image[i*pixels+j+1].red=27;
+		        image[i*pixels+j-1].green=237;
+		        image[i*pixels+j].green=237;
+	        	image[i*pixels+j+1].green=237;
+                image[i*pixels+j-1].blue=40;
+	        	image[i*pixels+j].blue=40;
+	        	image[i*pixels+j+1].blue=40;
+            } 
+		}
 	}
 }
