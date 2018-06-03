@@ -87,14 +87,14 @@ bool existFile (const string& nameFile) {
 string  Board:: draw(unsigned int pixels){
 
     int i = 0;
-    string nameFile="";
+    string nameFile="1";
     nameFile+=to_string(i);
     nameFile+=".ppm";
 
     while(existFile(nameFile)){
         i++;
         nameFile.clear();
-        nameFile="";
+        nameFile="1";
         nameFile+=to_string(i);
         nameFile+=".ppm";
     }
