@@ -87,13 +87,15 @@ bool existFile (const string& nameFile) {
 string  Board:: draw(unsigned int pixels){
 
     int i = 1;
-    string nameFile=to_string(i);
+    string nameFile="cpp";
+    nameFile+=to_string(i);
     nameFile+=".ppm";
 
     while(existFile(nameFile)){
         i++;
         nameFile.clear();
-        nameFile=to_string(i);
+        nameFile="cpp";
+        nameFile+=to_string(i);
         nameFile+=".ppm";
     }
   ofstream imageFile(nameFile, ios::out | ios::binary);
@@ -111,18 +113,14 @@ string  Board:: draw(unsigned int pixels){
 //for over the board
 for(uint i=0;i<this->len;++i){
     for(uint j=0;j<this->len;++j){
-        if(brd[i][j]=='X')
+        switch (brd[i][j]){
+            case 'X':
             makeX(image,i,j,pixels);
-        else if(brd[i][j]=='O')
+            break;
+            case 'O':
             makeO(image,i,j,pixels);
-        // switch (brd[i][j]){
-        //     case 'X':
-        //     makeX(image,i,j,pixels);
-        //     break;
-        //     case 'O':
-        //     makeO(image,i,j,pixels);
-        //     break;
-        // }
+            break;
+        }
     }
 }
   ///
