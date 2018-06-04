@@ -133,13 +133,14 @@ for(uint i=0;i<this->len;++i){
       return nameFile;
 }
 void Board:: makeX(RGB image[],uint Row,uint Col,uint pixels){
+   //Defaine all the bounds
     int brdsize=pixels/this->len;
-int RowStart=(Row+0.25)*brdsize, Colstart=(Col+0.25)*brdsize;
-	int Colend=(Col+0.75)*brdsize;   
+    int RowStart=(Row+0.25)*brdsize, Colstart=(Col+0.25)*brdsize;
+    int Colend=(Col+0.75)*brdsize;   
 	for(int i=0; i<0.5*brdsize; i++)
 	{
 		//make the negetive line blue
-		for(int k=i-2; k<i+3; k++){
+		for(int k=i-4; k<i+5; k++){
        		image[(i+RowStart)*pixels+Colstart+k].red=127;
 		image[(i+RowStart)*pixels+Colstart+k].green=136;
     		image[(i+RowStart)*pixels+Colstart+k].blue=229;
@@ -148,7 +149,7 @@ int RowStart=(Row+0.25)*brdsize, Colstart=(Col+0.25)*brdsize;
 	for(int i=0; i<0.5*brdsize; i++)
 	{
 		//make the positive line red
-		for(int k=i-2; k<i+3; k++){
+		for(int k=i-4; k<i+5; k++){
         	image[(i+RowStart)*pixels+Colend-k].red=248;
 		image[(i+RowStart)*pixels+Colend-k].green=11;
       		image[(i+RowStart)*pixels+Colend-k].blue=11;
@@ -159,6 +160,7 @@ int RowStart=(Row+0.25)*brdsize, Colstart=(Col+0.25)*brdsize;
 void Board:: makeO(RGB image[],uint indrow,uint indcol,uint pixels){
     int brdsize=pixels/this->len;
     int rad=brdsize/3;
+	//Defaine all the bounds
     int rowCenter= (indrow+0.5)*brdsize, colCenter=(indcol+0.5)*brdsize;
 	int rowStart=indrow*brdsize, colStart=indcol*brdsize;
 	int rowEnd=(indrow+1)*brdsize, colEnd=(indcol+1)*brdsize;
