@@ -50,7 +50,7 @@ inline istream&  operator>> (istream& in,Board &other){
    std::string line;
       uint i=0;uint j;
    getline(in,line);
-    int index=0,size=line.size()-1;
+    int index=0,size=line.size();
     if(line.size()==1)
         size=1;
       Board temp(size);
