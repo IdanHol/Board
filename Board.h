@@ -51,8 +51,9 @@ inline istream&  operator>> (istream& in,Board &other){
       uint i=0;uint j;
    getline(in,line);
     int index=0,size=line.size()-1;
+    if(line.size()==1)
+        size=1;
       Board temp(size);
-      //cout<<line.size() << endl;
          for(j = 0; j <size; j++){
          
             i=index;
@@ -72,7 +73,7 @@ inline istream&  operator>> (istream& in,Board &other){
         
     
         }
-  //cout<<temp;
+        cout<<temp;
    other = temp;
     return in;
 
