@@ -135,8 +135,8 @@ for(uint i=0;i<this->len;++i){
 void Board:: makeX(RGB image[],uint Row,uint Col,uint pixels){
    //Defaine all the bounds
     int brdsize=pixels/this->len;
-    int RowStart=(Row+0.20)*brdsize, Colstart=(Col+0.20)*brdsize;
-    int Colend=(Col+0.75)*brdsize;   
+    int RowStart=(Row+0.25)*brdsize, Colstart=(Col+0.25)*brdsize;
+    int Colend=(Col+0.80)*brdsize;   
 	for(int i=0; i<0.5*brdsize; i++)
 	{
 		//make the negetive line blue
