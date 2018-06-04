@@ -95,8 +95,8 @@ string  Board:: draw(unsigned int pixels){
     nameFile+=".ppm";
 
     while(existFile(nameFile)){
-        i++;
-        nameFile.clear();
+       i++;
+        //nameFile.clear();
         nameFile="cpp";
         nameFile+=to_string(i);
         nameFile+=".ppm";
