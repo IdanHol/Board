@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Sign.hpp"
 #include "Coordinate.hpp"
-#include "IllegalCoordinateException.hpp"
+//#include "IllegalCoordinateException.hpp"
 #include "RGB.h"
 #include <math.h>
 using namespace std;
