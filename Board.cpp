@@ -137,19 +137,19 @@ void Board:: makeX(RGB image[],uint Row,uint Col,uint pixels){
 int RowStart=(Row+0.25)*brdsize, Colstart=(Col+0.25)*brdsize;
 	int Colend=(Col+0.75)*brdsize;   
 	for(int i=0; i<0.5*brdsize; i++)
-	{   	
-        image[(i+RowStart)*pixels+Colstart+i-1].red=127;
-		image[(i+RowStart)*pixels+Colstart+i].red=127;
-		image[(i+RowStart)*pixels+Colstart+i+1].red=127;
-		image[(i+RowStart)*pixels+Colstart+i-1].green=136;
-		image[(i+RowStart)*pixels+Colstart+i].green=136;
-		image[(i+RowStart)*pixels+Colstart+i+1].green=136;
-    	image[(i+RowStart)*pixels+Colstart+i-1].blue=229;
-		image[(i+RowStart)*pixels+Colstart+i].blue=229;
-		image[(i+RowStart)*pixels+Colstart+i+1].blue=229;
+	{
+		//make the negetive line blue
+		for(int k=i-1; k<i+2; k++)
+       		image[(i+RowStart)*pixels+Colstart+k].red=127;
+		
+		image[(i+RowStart)*pixels+Colstart+k].green=136;
+		
+    		image[(i+RowStart)*pixels+Colstart+k].blue=229;
+		
 	}
 	for(int i=0; i<0.5*brdsize; i++)
 	{
+		//make the positive line red
         image[(i+RowStart)*pixels+Colend-i-1].red=248;
 		image[(i+RowStart)*pixels+Colend-i].red=248;
 		image[(i+RowStart)*pixels+Colend-i+1].red=248;
@@ -170,7 +170,7 @@ void Board:: makeO(RGB image[],uint indrow,uint indcol,uint pixels){
 	for(int i=rowStart; i<rowEnd; i++)
 	{
 		for(int j=colStart; j<colEnd; j++)
-		{
+		{	//make green circle
 			int dist=sqrt((i-rowCenter)*(i-rowCenter)+(j-colCenter)*(j-colCenter));//
 			if(dist==rad){
                 image[i*pixels+j-1].red=27;
