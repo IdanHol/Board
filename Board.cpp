@@ -44,7 +44,7 @@ Board::Board(const Board& other){
 Sign& Board:: operator[](const Coordinate& cor)const {
     if(cor.GetRow()<len&&cor.GetColumn()<len)
         return brd[cor.GetRow()][cor.GetColumn()];
-    throw IllegalCoordinateException (cor.GetRow(),cor.GetColumn());
+    //throw IllegalCoordinateException (cor.GetRow(),cor.GetColumn());
 }
 /*
 *Opreator input to Change Sign in the Board
