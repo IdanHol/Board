@@ -139,13 +139,13 @@ int RowStart=(Row+0.25)*brdsize, Colstart=(Col+0.25)*brdsize;
 	for(int i=0; i<0.5*brdsize; i++)
 	{
 		//make the negetive line blue
-		for(int k=i-1; k<i+2; k++)
+		for(int k=i-1; k<i+2; k++){
        		image[(i+RowStart)*pixels+Colstart+k].red=127;
 		
 		image[(i+RowStart)*pixels+Colstart+k].green=136;
 		
     		image[(i+RowStart)*pixels+Colstart+k].blue=229;
-		
+		}
 	}
 	for(int i=0; i<0.5*brdsize; i++)
 	{
