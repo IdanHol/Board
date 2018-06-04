@@ -46,14 +46,17 @@ inline ostream&  operator<< (ostream& out, const Board &other){
     return out;
 
 }
+/*
+*Input of document
+*/   
 inline istream&  operator>> (istream& in,Board &other){
    std::string line;
       uint i=0;uint j;
    getline(in,line);
     int index=0,size=line.size();
-    if(line.size()==1)
-        size=1;
+    
       Board temp(size);
+        //copy the first line
          for(j = 0; j <size; j++){
          
             i=index;
@@ -61,6 +64,7 @@ inline istream&  operator>> (istream& in,Board &other){
             temp[c] = line[j];
         }
        index++;
+        //Copy the other lines
         while(getline(in,line)){
         for(j = 0; j < size; j++){
          
