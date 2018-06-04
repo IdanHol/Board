@@ -3,6 +3,7 @@
 using namespace std;
 #include <fstream>
 #include "RGB.h"
+#include <string>
 /*
 *Default Constructor
 */
@@ -80,9 +81,11 @@ Board::~Board(){
     }
     delete[] brd;
 }
-bool existFile (const string& nameFile) {
+bool existFile (string nameFile) {
     ifstream f(nameFile);
-    return f.good();
+    if(f)
+        return true;
+    return false;
 }
 string  Board:: draw(unsigned int pixels){
 
