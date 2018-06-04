@@ -73,7 +73,6 @@ inline istream&  operator>> (istream& in,Board &other){
         
     
         }
-        cout<<temp;
    other = temp;
     return in;
 
