@@ -141,24 +141,19 @@ int RowStart=(Row+0.25)*brdsize, Colstart=(Col+0.25)*brdsize;
 		//make the negetive line blue
 		for(int k=i-2; k<i+3; k++){
        		image[(i+RowStart)*pixels+Colstart+k].red=127;
-		
 		image[(i+RowStart)*pixels+Colstart+k].green=136;
-		
     		image[(i+RowStart)*pixels+Colstart+k].blue=229;
 		}
 	}
 	for(int i=0; i<0.5*brdsize; i++)
 	{
 		//make the positive line red
-        image[(i+RowStart)*pixels+Colend-i-1].red=248;
-		image[(i+RowStart)*pixels+Colend-i].red=248;
-		image[(i+RowStart)*pixels+Colend-i+1].red=248;
-		image[(i+RowStart)*pixels+Colend-i-1].green=11;
-		image[(i+RowStart)*pixels+Colend-i].green=11;
-		image[(i+RowStart)*pixels+Colend-i+1].green=11;
-        image[(i+RowStart)*pixels+Colend-i-1].blue=11;
-		image[(i+RowStart)*pixels+Colend-i].blue=11;
-		image[(i+RowStart)*pixels+Colend-i+1].blue=11;
+		for(int k=i-2; k<i+3; k++){
+        	image[(i+RowStart)*pixels+Colend-k].red=248;
+		image[(i+RowStart)*pixels+Colend-k].green=11;
+      		image[(i+RowStart)*pixels+Colend-k].blue=11;
+		
+		}
 	}
 }
 void Board:: makeO(RGB image[],uint indrow,uint indcol,uint pixels){
@@ -171,18 +166,14 @@ void Board:: makeO(RGB image[],uint indrow,uint indcol,uint pixels){
 	{
 		for(int j=colStart; j<colEnd; j++)
 		{	//make green circle
-			int dist=sqrt((i-rowCenter)*(i-rowCenter)+(j-colCenter)*(j-colCenter));//
+			int dist=sqrt((i-rowCenter)*(i-rowCenter)+(j-colCenter)*(j-colCenter));
 			if(dist==rad){
-                image[i*pixels+j-1].red=27;
-		        image[i*pixels+j].red=27;
-		        image[i*pixels+j+1].red=27;
-		        image[i*pixels+j-1].green=237;
-		        image[i*pixels+j].green=237;
-	        	image[i*pixels+j+1].green=237;
-                image[i*pixels+j-1].blue=40;
-	        	image[i*pixels+j].blue=40;
-	        	image[i*pixels+j+1].blue=40;
-            } 
-		}
+			for(int k=j-2; k<j+3; k++){	
+              		image[i*pixels+k].red=27; 
+		        image[i*pixels+k].green=237;
+	        	image[i*pixels+k].blue=40;
+			}
+         	   } 
+	       }
 	}
 }
