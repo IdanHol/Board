@@ -109,7 +109,6 @@ string  Board:: draw(unsigned int pixels){
      image[pixels*j+i].blue = ( (i*i+j*j) % 256);
     }
   }
-cout<<this->len;
 //for over the board
 for(uint i=0;i<this->len;++i){
     for(uint j=0;j<this->len;++j){
